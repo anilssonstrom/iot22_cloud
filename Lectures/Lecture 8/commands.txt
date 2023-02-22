@@ -1,0 +1,37 @@
+Open the database and run these commands in the SQLite browser:
+
+Show all movies
+SELECT * FROM movies;
+
+Show all directors
+SELECT * FROM directors;
+
+Show only title and vote agerage from movies
+SELECT title, vote_average FROM movies;
+
+Show title, vote agerage and director ID from movies
+SELECT movies.title, movies.vote_average, director_id FROM movies;
+
+Replace "director_id" with the director's name by using JOIN with another table
+SELECT movies.title, movies.vote_average, directors.name
+FROM movies INNER JOIN directors on movies.director_id = directors.id;
+
+Limit the results to the 10 first
+SELECT movies.title, movies.vote_average, directors.name
+FROM movies INNER JOIN directors on movies.director_id = directors.id
+LIMIT 10;
+
+Only show movies from a specific director
+SELECT movies.title, movies.vote_average, directors.name
+FROM movies INNER JOIN directors on movies.director_id = directors.id
+WHERE directors.name = "James Cameron";
+
+Find top 10 movies from a director
+SELECT
+movies.title, movies.vote_average, directors.name
+FROM movies
+INNER JOIN directors on movies.director_id = directors.id
+WHERE
+directors.name = "Ridley Scott"
+ORDER BY movies.vote_average DESC
+LIMIT 10;
