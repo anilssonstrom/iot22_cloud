@@ -1,0 +1,14 @@
+# docker-compose.yml
+
+# Usage: docker-compose up -d
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+    volumes:
+      - "./.database:/var/lib/mysql"   # lokala mappen : mappen i containern
