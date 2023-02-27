@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+Index
+{% endblock %}
+{% block body %}
+    <p>Filmlistan!</p>
+    <ul>
+        {% for i in range(movies| length) %}
+        <li>
+            <a href="/info?movie={{ i }}">{{ movies[i].name }}</a>
+            <a href="/remove/{{ i }}"> remove</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <form action="/add" method="POST">
+        <label for="name">Namn:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="rating">Betyg:</label><br>
+        <input type="text" id="rating" name="rating"><br><br>
+        <input type="submit" value="Lägg till film">
+    </form>
+{% endblock %}
