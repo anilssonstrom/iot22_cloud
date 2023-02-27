@@ -5,17 +5,18 @@
 services:
   web:
     depends_on:
-      - db
-    restart: on-failure:4
+      - db  # Make sure the db service is working first
+    restart: on-failure:4  # If the container crashes, try restarting it 4 times
     build:
-        dockerfile: Dockerfile
-        tags:
-          - anilssonstrom/moviedb:v4
+        dockerfile: Dockerfile  # Build the image from the file "Dockerfile"
+        tags:  # How should we name the images?
           - anilssonstrom/moviedb:latest
+          - anilssonstrom/moviedb:v4
+    image: anilssonstrom/moviedb
     ports:
-      - 5000:80
+      - 5000:80  # Which ports should we expose?
     environment:
-      FLASK_DEBUG: true
+      FLASK_DEBUG: true  # Tell Flask to run in debug mode
 
   db:
     image: mysql:latest
